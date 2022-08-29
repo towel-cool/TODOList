@@ -3,7 +3,7 @@ from taskSystem import *
 # Diego Diaz
 # The purpose of this program is to keep track of tasks that you need to do
 
-# TODO: CREATE A COMPLETED TASKS COMMAND, FILE IO FOR TASKS, CHANGE HOW ID IS MADE
+# TODO: UPDATING TASK STATUS, CREATE A COMPLETED TASKS COMMAND, FILE IO FOR TASKS, CHANGE HOW ID IS MADE
 
 
 def main():
