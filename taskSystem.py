@@ -1,27 +1,22 @@
 # Handles the tasks, and commands
 from task import *
 
-tasks = {}
+tasks = []
 
 
 def createTask(name, description):
-    newTaskID = len(tasks) + 1
-    newTask = task(name, description, newTaskID)
-    tasks.update({str(newTaskID): newTask})
+    newTask = task(name, description)
+    tasks.append(newTask)
 
 
 def printTasks():
-    for i in tasks:
-        print(i)
-    print(tasks)
+    for i in range(len(tasks)):
+        print(str(i + 1) + '. ' + str(tasks[i]))
 
 
 def removeTask(taskID):
-    try:
-        tasks.pop(str(taskID))
-    except :
-        print("Task " + taskID + " does not exist")
-
+    tasks.pop(int(taskID) - 1)
+    print("Task " + taskID + " removed successfully")
 
 def getAmountOfTasks():
     return len(tasks)

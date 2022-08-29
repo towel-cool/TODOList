@@ -3,8 +3,7 @@ from taskSystem import *
 # Diego Diaz
 # The purpose of this program is to keep track of tasks that you need to do
 
-# TODO: DELETING TASKS, UPDATING TASKS STATUS, CREATE A COMPLETED TASKS COMMAND, FILE IO FOR TASKS, CHANGE HOW ID IS MADE
-# MAYBE: EXCEPTIONS
+# TODO: CREATE A COMPLETED TASKS COMMAND, FILE IO FOR TASKS, CHANGE HOW ID IS MADE
 
 
 def main():
@@ -16,7 +15,10 @@ def main():
         if command == "CREATE":
             name = input("Enter a task name: ")
             description = input("Enter a description: ")
-            createTask(name, description)
+            try:
+                createTask(name, description)
+            except:
+                print("Error creating task")
 
         elif command == "TASKS":
             if getAmountOfTasks() <= 0:
@@ -29,7 +31,10 @@ def main():
                 print("No tasks to remove")
                 continue
             taskID = input("Enter Task Number: ")
-            removeTask(taskID)
+            try:
+                removeTask(taskID)
+            except:
+                print("Task " + taskID + " not found")
 
         elif command == "QUIT":
             print("Quitting...")
