@@ -1,6 +1,6 @@
 class task:
     # Task class.
-    # Creates a tasks with a name, descriptions and unique ID
+    # Creates a tasks with a name, description, and status of completion
     def __init__(self, taskName, taskDescription):
         self.taskName = taskName
         self.taskDescription = taskDescription
@@ -15,10 +15,13 @@ class task:
     def getTaskStatus(self):
         return self.taskStatus
 
+    def setComplete(self):
+        self.taskStatus = True
+
     def __repr__(self):
-        return "Name: " + self.taskName + " Completed: " + str(self.taskStatus) + \
-               " Description: " + self.taskDescription
+        return self.taskName + "\nDescription: " + self.taskDescription + \
+               "\nCompleted: " + str(self.taskStatus)
 
     def __str__(self):
-        return "Name: " + self.taskName + " Completed: " + str(self.taskStatus) + \
-               " Description: " + self.taskDescription
+        return self.taskName + "\nDescription: " + self.taskDescription + \
+               "\nCompleted: " + str(self.taskStatus)

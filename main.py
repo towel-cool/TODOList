@@ -12,6 +12,7 @@ def main():
         command = input("Command: ")
         command = command.upper()
 
+        # Create tasks
         if command == "CREATE":
             name = input("Enter a task name: ")
             description = input("Enter a description: ")
@@ -20,27 +21,42 @@ def main():
             except:
                 print("Error creating task")
 
+        # Print all tasks
         elif command == "TASKS":
             if getAmountOfTasks() <= 0:
                 print("No tasks")
                 continue
-            printTasks()
+            printAllTasks()
 
+        # Remove a given task
         elif command == "REMOVE":
             if getAmountOfTasks() <= 0:
                 print("No tasks to remove")
                 continue
-            taskID = input("Enter Task Number: ")
+            taskID = input("Enter task number: ")
             try:
                 removeTask(taskID)
             except:
                 print("Task " + taskID + " not found")
 
+        # Set a task to complete
+        elif command == "COMPLETE":
+            if getAmountOfTasks() <= 0:
+                print("No tasks to complete")
+                continue
+            taskID = input("Enter task number: ")
+            try:
+                setTaskComplete(taskID)
+            except:
+                print("Task " + taskID + " not found")
+
+        # Quit the program
         elif command == "QUIT":
             print("Quitting...")
 
+        # Unknown command
         else:
-            print("Unknown Command " + command)
+            print("Unknown command " + command)
 
 
 if __name__ == "__main__":
