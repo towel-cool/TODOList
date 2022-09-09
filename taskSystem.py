@@ -10,10 +10,20 @@ def createTask(name, description):
 
 
 def printAllTasks():
-    print("List of all tasks\n---------------------------------------")
+    print("\n---------------------------------------\nIncomplete Tasks\n---------------------------------------")
+    indexOfFirstCompleteTask = -1
+    tasksAreComplete = False
     for i in range(len(tasks)):
+        if tasks[i].getTaskStatus() == True:
+            tasksAreComplete = True
+            indexOfFirstCompleteTask = i
+            break
         print(str(i + 1) + '. ' + str(tasks[i]))
-        print("---------------------------------------")
+
+    print("\n---------------------------------------\nComplete Tasks\n---------------------------------------")
+    if tasksAreComplete:
+        for i in range(indexOfFirstCompleteTask, len(tasks)):
+            print(str(i + 1) + '. ' + str(tasks[i]))
 
 
 def removeTask(taskID):
@@ -23,9 +33,10 @@ def removeTask(taskID):
 
 def setTaskComplete(taskID):
     completeTask = tasks[int(taskID) - 1]
+    tasks.remove(completeTask)
+    tasks.append(completeTask)    
     completeTask.setComplete()
 
 
 def getAmountOfTasks():
     return len(tasks)
-# Creating Exceptions

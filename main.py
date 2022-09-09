@@ -3,8 +3,8 @@ from taskSystem import *
 # Diego Diaz
 # The purpose of this program is to act as a TODO List
 
-# TODO: UPDATING TASK STATUS, CREATE A COMPLETED TASKS COMMAND, FILE IO FOR TASKS, CHANGE HOW ID IS MADE, 
-# MAKE IT SO THAT WHEN YOU DO THE TASKS COMMAND IT PRINTS A LIST OF INCOMPLETE TASKS AND COMPLETE TASKS WITH SEPERATION BETWEEN THEM
+# TODO: FILE IO FOR TASKS 
+# FIX THE BUG WHERE TASKS ARE PRINTING UNDER THE COMPLETED TASKS TAB WHEN THEY ARE CREATED AFTER A TASK IS COMPLETE
 
 
 def main():
@@ -15,6 +15,7 @@ def main():
                     "CREATE" : "Creates a new tasks",
                     "REMOVE" : "Removes a task from the list of tasks",
                     "COMPLETE" : "Marks a task as complete",
+                    "CLEAR" : "Clears the terminal",
                     "QUIT" : "Exits the program"}
 
     while command != "QUIT":
@@ -60,9 +61,12 @@ def main():
                 print("Task " + taskID + " not found")
 
         elif command == "HELP":
-            print("Note: Commands are not case sensitive")
+            print("Note: Commands are not case sensitive\n")
             for i in allCommands:
                 print(i + ': ' + allCommands.get(i))
+        
+        elif command == "CLEAR":
+            print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
 
         # Quit the program
         elif command == "QUIT":
@@ -75,3 +79,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+    
