@@ -19,9 +19,13 @@ class task:
         self.taskStatus = True
 
     def __repr__(self):
-        return self.taskName + "\nDescription: " + self.taskDescription + \
-               "\nCompleted: " + str(self.taskStatus)
+        if self.taskDescription != "":
+            return self.taskName + "\nDescription: " + self.taskDescription + \
+                "\nCompleted: " + str(self.taskStatus)
+        return self.taskName + "\nCompleted: " + str(self.taskStatus)
 
     def __str__(self):
-        return self.taskName + "\nDescription: " + self.taskDescription + \
-               "\nCompleted: " + str(self.taskStatus)
+        if self.taskDescription != "":
+            return self.taskName + "\nDescription: " + self.taskDescription + \
+                "\nCompleted: " + str(self.taskStatus)
+        return self.taskName + "\nCompleted: " + str(self.taskStatus)

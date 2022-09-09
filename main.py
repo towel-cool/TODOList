@@ -1,21 +1,30 @@
 from taskSystem import *
 
 # Diego Diaz
-# The purpose of this program is to keep track of tasks that you need to do
+# The purpose of this program is to act as a TODO List
 
-# TODO: UPDATING TASK STATUS, CREATE A COMPLETED TASKS COMMAND, FILE IO FOR TASKS, CHANGE HOW ID IS MADE
+# TODO: UPDATING TASK STATUS, CREATE A COMPLETED TASKS COMMAND, FILE IO FOR TASKS, CHANGE HOW ID IS MADE, 
+# MAKE IT SO THAT WHEN YOU DO THE TASKS COMMAND IT PRINTS A LIST OF INCOMPLETE TASKS AND COMPLETE TASKS WITH SEPERATION BETWEEN THEM
 
 
 def main():
+    print("TODO List \nProgram created by Diego Diaz \nType 'help' to see a list of commands")
     command = ""
+    #Updated list of all commands and their purpose
+    allCommands = {"TASKS" : "List all tasks",
+                    "CREATE" : "Creates a new tasks",
+                    "REMOVE" : "Removes a task from the list of tasks",
+                    "COMPLETE" : "Marks a task as complete",
+                    "QUIT" : "Exits the program"}
+
     while command != "QUIT":
-        command = input("Command: ")
+        command = input("> ")
         command = command.upper()
 
         # Create tasks
         if command == "CREATE":
             name = input("Enter a task name: ")
-            description = input("Enter a description: ")
+            description = input("Enter a description (optional): ")
             try:
                 createTask(name, description)
             except:
@@ -50,13 +59,18 @@ def main():
             except:
                 print("Task " + taskID + " not found")
 
+        elif command == "HELP":
+            print("Note: Commands are not case sensitive")
+            for i in allCommands:
+                print(i + ': ' + allCommands.get(i))
+
         # Quit the program
         elif command == "QUIT":
             print("Quitting...")
 
         # Unknown command
         else:
-            print("Unknown command " + command)
+            print("Unknown command " + command + "\nType 'help' to see a list of commands")
 
 
 if __name__ == "__main__":
