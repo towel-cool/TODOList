@@ -4,8 +4,7 @@ from taskSystem import *
 # The purpose of this program is to act as a TODO List
 
 # TODO: FILE IO FOR TASKS 
-# FIX THE BUG WHERE TASKS ARE PRINTING UNDER THE COMPLETED TASKS TAB WHEN THEY ARE CREATED AFTER A TASK IS COMPLETE
-
+# CREATE SWAP FUNCTION
 
 def main():
     print("TODO List \nProgram created by Diego Diaz \nType 'help' to see a list of commands")
@@ -66,7 +65,7 @@ def main():
                 print(i + ': ' + allCommands.get(i))
         
         elif command == "CLEAR":
-            print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
+            print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
 
         # Quit the program
         elif command == "QUIT":

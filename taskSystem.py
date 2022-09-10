@@ -6,7 +6,7 @@ tasks = []
 
 def createTask(name, description):
     newTask = task(name, description)
-    tasks.append(newTask)
+    tasks.insert(0, newTask)
 
 
 def printAllTasks():
@@ -24,6 +24,7 @@ def printAllTasks():
     if tasksAreComplete:
         for i in range(indexOfFirstCompleteTask, len(tasks)):
             print(str(i + 1) + '. ' + str(tasks[i]))
+    print("")
 
 
 def removeTask(taskID):
@@ -32,10 +33,14 @@ def removeTask(taskID):
 
 
 def setTaskComplete(taskID):
-    completeTask = tasks[int(taskID) - 1]
-    tasks.remove(completeTask)
-    tasks.append(completeTask)    
-    completeTask.setComplete()
+    if tasks[int(taskID) - 1].getTaskStatus() == True:
+        print("Task " + taskID +" already completed")
+    else:
+        completeTask = tasks[int(taskID) - 1]
+        tasks.remove(completeTask)
+        tasks.append(completeTask)    
+        completeTask.setComplete()
+        print("Task " + taskID + " marked as complete")
 
 
 def getAmountOfTasks():
