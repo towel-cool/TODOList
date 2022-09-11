@@ -10,10 +10,11 @@ def main():
     print("TODO List \nProgram created by Diego Diaz \nType 'help' to see a list of commands")
     command = ""
     #Updated list of all commands and their purpose
-    allCommands = {"TASKS" : "List all tasks",
+    allCommands = { "TASKS" : "List all tasks",
                     "CREATE" : "Creates a new tasks",
                     "REMOVE" : "Removes a task from the list of tasks",
                     "COMPLETE" : "Marks a task as complete",
+                    "SWAP" : "Swaps the position of two tasks",
                     "CLEAR" : "Clears the terminal",
                     "QUIT" : "Exits the program"}
 
@@ -58,6 +59,17 @@ def main():
                 setTaskComplete(taskID)
             except:
                 print("Task " + taskID + " not found")
+
+        elif command == "SWAP":
+            if getAmountOfTasks() <= 0:
+                print("No tasks to swap")
+                continue
+            taskID1 = input("Enter task number: ")
+            taskID2 = input("Enter task number to swap with: ")
+            try:
+                swapTasks(taskID1, taskID2)
+            except:
+                print("Error swapping tasks")
 
         elif command == "HELP":
             print("Note: Commands are not case sensitive\n")

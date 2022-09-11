@@ -6,7 +6,14 @@ tasks = []
 
 def createTask(name, description):
     newTask = task(name, description)
-    tasks.insert(0, newTask)
+    if len(tasks) <= 0:
+        tasks.append(newTask)
+    else:
+        for i in range(len(tasks)):
+            if tasks[i].getTaskStatus() == True:
+                tasks.insert(i, newTask)
+            elif i == (len(tasks) - 1):
+                tasks.append(newTask)
 
 
 def printAllTasks():
@@ -31,6 +38,20 @@ def removeTask(taskID):
     tasks.pop(int(taskID) - 1)
     print("Task " + taskID + " removed successfully")
 
+
+def swapTasks(taskID1, taskID2):
+    if (tasks[int(taskID1) - 1].getTaskStatus() == False and tasks[int(taskID2) - 1].getTaskStatus() == False) \
+    or (tasks[int(taskID1) - 1].getTaskStatus() == True and tasks[int(taskID2) - 1].getTaskStatus() == True):
+        task1 = tasks[int(taskID1) - 1]
+        task2 = tasks[int(taskID2) - 1]
+        tasks.remove(task1)
+        tasks.insert(int(taskID1) - 1, task2)
+        tasks.remove(task2)
+        tasks.insert(int(taskID2) - 1, task1)
+        print("Task " + taskID1 + " swapped with task " + taskID2)
+    else:
+        print("Cannot swap completed tasks with incomplete tasks")
+    
 
 def setTaskComplete(taskID):
     if tasks[int(taskID) - 1].getTaskStatus() == True:
