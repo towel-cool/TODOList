@@ -1,5 +1,5 @@
-from tkinter import W
 from taskSystem import *
+
 
 # Diego Diaz
 # The purpose of this program is to act as a TODO List
