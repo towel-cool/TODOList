@@ -4,7 +4,7 @@ from taskSystem import *
 # Diego Diaz
 # The purpose of this program is to act as a TODO List
 
-# TODO: FILE IO FOR TASKS 
+# TODO: FILE IO FOR TASKS
 
 
 # File IO functions
@@ -16,19 +16,19 @@ def writeFile(f):
 def main():
     # Startup
     print("TODO List \nProgram created by Diego Diaz \nType 'help' to see a list of commands")
-    f = open("tasks.txt", "w", encoding="utf-8")
+
+    f = open("tasks.txt", "w+", encoding="utf-8")
+
     command = ""
 
-
-    #Updated list of all commands and their purpose
-    allCommands = { "TASKS" : "List all tasks",
-                    "CREATE" : "Creates a new tasks",
-                    "REMOVE" : "Removes a task from the list of tasks",
-                    "COMPLETE" : "Marks a task as complete",
-                    "SWAP" : "Swaps the position of two tasks",
-                    "CLEAR" : "Clears the terminal",
-                    "QUIT" : "Exits the program"}
-
+    # Updated list of all commands and their purpose
+    allCommands = {"TASKS": "List all tasks",
+                   "CREATE": "Creates a new tasks",
+                   "REMOVE": "Removes a task from the list of tasks",
+                   "COMPLETE": "Marks a task as complete",
+                   "SWAP": "Swaps the position of two tasks",
+                   "CLEAR": "Clears the terminal",
+                   "QUIT": "Exits the program"}
 
     while command != "QUIT":
         command = input("> ")
@@ -90,7 +90,7 @@ def main():
             print("Note: Commands are not case sensitive\n")
             for i in allCommands:
                 print(i + ': ' + allCommands.get(i))
-        
+
         elif command == "CLEAR":
             print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
 
@@ -101,10 +101,9 @@ def main():
 
         # Unknown command
         else:
-            print("Unknown command " + command + "\nType 'help' to see a list of commands")
+            print("Unknown command " + command +
+                  "\nType 'help' to see a list of commands")
 
 
 if __name__ == "__main__":
     main()
-    
-
