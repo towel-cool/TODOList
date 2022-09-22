@@ -1,5 +1,5 @@
 from taskSystem import *
-
+import os
 
 # Diego Diaz
 # The purpose of this program is to act as a TODO List
@@ -15,9 +15,14 @@ def writeFile(f):
 
 def main():
     # Startup
-    print("TODO List \nProgram created by Diego Diaz \nType 'help' to see a list of commands")
 
-    f = open("tasks.txt", "w+", encoding="utf-8")
+    # print("TODO List \nProgram created by Diego Diaz \nType 'help' to see a list of commands")
+    print("")
+
+    __location__ = os.path.realpath(os.path.join(
+        os.getcwd(), os.path.dirname(__file__)))
+
+    f = open(os.path.join(__location__, 'tasks.txt'), "w+", encoding="utf-8")
 
     command = ""
 
@@ -43,7 +48,7 @@ def main():
             except:
                 print("Error creating task")
 
-        elif command == "WRITE":
+        elif command == "TESTFILE":
             writeFile(f)
 
         # Print all tasks
@@ -92,7 +97,10 @@ def main():
                 print(i + ': ' + allCommands.get(i))
 
         elif command == "CLEAR":
-            print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
+            clearCommand = "clear"
+            if os.name in ('nt', 'dos'):
+                command="cls"            
+            os.system(clearCommand)
 
         # Quit the program
         elif command == "QUIT":
