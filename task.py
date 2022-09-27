@@ -1,10 +1,10 @@
 class task:
     # Task class.
     # Creates a tasks with a name, description, and status of completion
-    def __init__(self, taskName, taskDescription):
+    def __init__(self, taskName, taskDescription, taskStatus):
         self.taskName = taskName
         self.taskDescription = taskDescription
-        self.taskStatus = False
+        self.taskStatus = taskStatus
 
     def getTaskName(self):
         return self.taskName

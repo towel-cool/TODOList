@@ -12,17 +12,30 @@ import os
 def writeFile(f):
     f.write("Hello this is a test!")
 
+def readFile(f):
+    savedTasks = f.readlines()
+    for task in savedTasks:
+        task = task.split('-')
+        
+        print(task)
+        print(len(task))
+
+        status = task[0]
+        name = task[1]
+        description = task[2]
+        createTask(name, description, status)
 
 def main():
     # Startup
 
-    # print("TODO List \nProgram created by Diego Diaz \nType 'help' to see a list of commands")
-    print("")
+    print("TODO List \nProgram created by Diego Diaz \nType 'help' to see a list of commands")
 
     __location__ = os.path.realpath(os.path.join(
         os.getcwd(), os.path.dirname(__file__)))
 
-    f = open(os.path.join(__location__, 'tasks.txt'), "w+", encoding="utf-8")
+    f = open(os.path.join(__location__, 'tasks.txt'), "r", encoding="utf-8")
+
+    readFile(f)
 
     command = ""
 

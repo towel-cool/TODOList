@@ -4,8 +4,8 @@ from task import *
 tasks = []
 
 
-def createTask(name, description):
-    newTask = task(name, description)
+def createTask(name, description, status):
+    newTask = task(name, description, status)
     if len(tasks) <= 0:
         tasks.append(newTask)
     else:
