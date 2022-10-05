@@ -2,40 +2,31 @@ from taskSystem import *
 import os
 
 # Diego Diaz
-# The purpose of this program is to act as a TODO List
-
-# TODO: FILE IO FOR TASKS
+# The purpose of this program is to act as a TODO List which will save tasks once exited and will reload them once opened
 
 
 # File IO functions
 
-def writeFile(f):
-    f.write("Hello this is a test!")
-
-def readFile(f):
-    savedTasks = f.readlines()
-    for task in savedTasks:
-        task = task.split('-')
-        
-        print(task)
-        print(len(task))
-
-        status = task[0]
-        name = task[1]
-        description = task[2]
-        createTask(name, description, status)
 
 def main():
     # Startup
 
-    print("TODO List \nProgram created by Diego Diaz \nType 'help' to see a list of commands")
+    print("TODO List \nProgram created by Diego Diaz \nType 'help' to see a list of commands\nIMPORTANT: When exiting the program be sure to exit using the 'exit' command to ensure that all data is saved correctly")
 
     __location__ = os.path.realpath(os.path.join(
         os.getcwd(), os.path.dirname(__file__)))
 
-    f = open(os.path.join(__location__, 'tasks.txt'), "r", encoding="utf-8")
+    # Read the stored tasks file
+    savedTasks = open(os.path.join(__location__, 'tasks.txt'),
+                      "r", encoding="utf-8")
+    readFile(savedTasks)
+    savedTasks.close()
 
-    readFile(f)
+    # Open the file in read mode
+    # The reason this is seperate from the statement above is because this statement overwrites the file
+    # so I want to read the file before overwriting it
+    savedTasks = open(os.path.join(__location__, 'tasks.txt'),
+                      "a", encoding="utf-8")
 
     command = ""
 
@@ -46,9 +37,9 @@ def main():
                    "COMPLETE": "Marks a task as complete",
                    "SWAP": "Swaps the position of two tasks",
                    "CLEAR": "Clears the terminal",
-                   "QUIT": "Exits the program"}
+                   "EXIT": "Exits the program"}
 
-    while command != "QUIT":
+    while command != "EXIT":
         command = input("> ")
         command = command.upper()
 
@@ -57,12 +48,13 @@ def main():
             name = input("Enter a task name: ")
             description = input("Enter a description (optional): ")
             try:
-                createTask(name, description)
+                createTask(name, description, False)
+                writeFile(savedTasks)
             except:
                 print("Error creating task")
 
-        elif command == "TESTFILE":
-            writeFile(f)
+        elif command == "SAVE":
+            writeFile(savedTasks)
 
         # Print all tasks
         elif command == "TASKS":
@@ -79,6 +71,7 @@ def main():
             taskID = input("Enter task number: ")
             try:
                 removeTask(taskID)
+                writeFile(savedTasks)
             except:
                 print("Task " + taskID + " not found")
 
@@ -90,6 +83,7 @@ def main():
             taskID = input("Enter task number: ")
             try:
                 setTaskComplete(taskID)
+                writeFile(savedTasks)
             except:
                 print("Task " + taskID + " not found")
 
@@ -101,6 +95,7 @@ def main():
             taskID2 = input("Enter task number to swap with: ")
             try:
                 swapTasks(taskID1, taskID2)
+                writeFile(savedTasks)
             except:
                 print("Error swapping tasks")
 
@@ -112,13 +107,14 @@ def main():
         elif command == "CLEAR":
             clearCommand = "clear"
             if os.name in ('nt', 'dos'):
-                command="cls"            
+                command = "cls"
             os.system(clearCommand)
 
         # Quit the program
-        elif command == "QUIT":
-            f.close()
-            print("Quitting...")
+        elif command == "EXIT":
+            writeFile(savedTasks)
+            savedTasks.close()
+            print("Exiting...")
 
         # Unknown command
         else:
